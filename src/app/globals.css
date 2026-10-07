@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   AMRUT DURGOTSAV — DESIGN TOKENS
+   A warm, earthen palette drawn from Sahyadri basalt, fort laterite, diya
+   light and antique brass. Deliberately restrained: saffron and vermilion
+   are accents, never the ground.
+   ========================================================================== */
+
+@theme {
+  /* --- Raw palette ------------------------------------------------------ */
+  --color-ink-900: #0d0b09;
+  --color-ink-800: #14110d;
+  --color-ink-700: #1d1812;
+  --color-ink-600: #2a231a;
+  --color-ink-500: #3a3025;
+
+  --color-paper-50: #faf6ee;
+  --color-paper-100: #f4eee1;
+  --color-paper-200: #e9e0cd;
+  --color-paper-300: #d9ccb2;
+  --color-paper-400: #c0ad8c;
+
+  --color-saffron-400: #e3903a;
+  --color-saffron-500: #d4761f;
+  --color-saffron-600: #b25f16;
+
+  --color-vermilion-500: #b4381b;
+  --color-vermilion-600: #8f2a14;
+
+  --color-maroon-600: #6e1f1c;
+  --color-maroon-700: #4e1413;
+
+  --color-gold-300: #e2c88c;
+  --color-gold-400: #cfae63;
+  --color-gold-500: #b98f3e;
+  --color-gold-600: #846124;
+
+  --color-clay-500: #8a5a33;
+  --color-moss-600: #45503c;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-devanagari: var(--font-tiro), "Nirmala UI", serif;
+  --font-sans: var(--font-mukta), ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  /* --- Layout ----------------------------------------------------------- */
+  --spacing-gutter: clamp(1.25rem, 4vw, 4.5rem);
+}
+
+/* ==========================================================================
+   SEMANTIC ZONES
+   Components never reference raw palette colours. They reference semantic
+   variables, which each "zone" remaps. This is what lets the same card,
+   button or heading sit on a cinematic dark band or a warm paper band
+   without a single conditional class.
+   ========================================================================== */
+
+@layer base {
+  :root {
+    color-scheme: dark;
+
+    --background: var(--color-ink-900);
+    --surface: var(--color-ink-800);
+    --surface-raised: var(--color-ink-700);
+    --foreground: var(--color-paper-50);
+    --muted: #9c9083;
+    --border: #2e2619;
+    --primary: var(--color-saffron-500);
+    /* Deep ink, not white: white on this saffron is only 3.28:1, which fails
+       AA. Ink on the same saffron is 5.99:1 and keeps the accent's warmth. */
+    --primary-contrast: var(--color-ink-900);
+    --accent: var(--color-gold-400);
+    --secondary: var(--color-vermilion-500);
+  }
+
+  /* Cinematic dark band (default). */
+  .zone-ink {
+    --background: var(--color-ink-900);
+    --surface: var(--color-ink-800);
+    --surface-raised: var(--color-ink-700);
+    --foreground: var(--color-paper-50);
+    --muted: #9c9083;
+    --border: #2e2619;
+    --primary: var(--color-saffron-500);
+    --primary-contrast: var(--color-ink-900);
+    --accent: var(--color-gold-400);
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Warm editorial paper band. Gives the long-form sections the contrast
+     that stops the site reading as "all orange on black". */
+  .zone-paper {
+    --background: var(--color-paper-50);
+    --surface: #ffffff;
+    --surface-raised: var(--color-paper-100);
+    --foreground: var(--color-ink-800);
+    --muted: #6b6155;
+    --border: var(--color-paper-300);
+    --primary: var(--color-vermilion-600);
+    --primary-contrast: #ffffff;
+    --accent: var(--color-gold-600);
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Deep maroon band — used sparingly for the record / CTA moments. */
+  .zone-maroon {
+    --background: var(--color-maroon-700);
+    --surface: var(--color-maroon-600);
+    --surface-raised: #5c1817;
+    --foreground: var(--color-paper-50);
+    --muted: #d3b6ad;
+    --border: #74302c;
+    --primary: var(--color-gold-400);
+    --primary-contrast: var(--color-maroon-700);
+    --accent: var(--color-gold-300);
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  /* Lenis drives scrolling on capable devices; when it is active we must not
+     also let the browser smooth-scroll, or the two fight each other. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  html.lenis {
+    scroll-behavior: auto;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  body {
+    background-color: var(--color-ink-900);
+    color: var(--color-paper-50);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  /* Devanagari needs a touch more leading than Latin at the same size, or
+     the matras collide with the line above. */
+  :lang(mr),
+  .mr {
+    line-height: 1.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-saffron-500);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-300);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Keep the native focus ring away from mouse users but always available
+     to keyboard users. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 96rem;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility container-prose {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 44rem;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Fluid editorial type scale. Each step is a clamp so there is no jump
+   between the 320px and 1920px targets. */
+@utility text-display {
+  font-size: clamp(2.75rem, 1.2rem + 7.4vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+@utility text-h1 {
+  font-size: clamp(2.25rem, 1.3rem + 4.2vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+@utility text-h2 {
+  font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+@utility text-h3 {
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+@utility text-lede {
+  font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.375rem);
+  line-height: 1.68;
+}
+
+@utility text-eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* The same label, set for Devanagari.
+   Wide Latin tracking is a typographic convention that Devanagari does not
+   share: it pulls matras away from their base glyphs and makes a word read as
+   loose fragments. Uppercasing is meaningless there too. So Devanagari labels
+   get their own treatment — slightly larger, barely tracked, and set in the
+   Marathi display face. */
+@utility text-eyebrow-mr {
+  font-family: var(--font-devanagari);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 400;
+}
+
+/* Devanagari display lockup — Tiro Marathi at headline sizes.
+   Line-heights here are deliberately looser than their Latin counterparts:
+   Devanagari stacks marks above the shirorekha (the repha in दुर्गोत्सव, the
+   matras in शिवछत्रपती), and a Latin-tight line box clips them. */
+@utility text-display-mr {
+  font-family: var(--font-devanagari);
+  font-size: clamp(2.25rem, 1rem + 6vw, 7rem);
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-h1-mr {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.75rem, 1.1rem + 3.2vw, 3.75rem);
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+@utility text-h2-mr {
+  font-family: var(--font-devanagari);
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.75rem);
+  line-height: 1.34;
+  font-weight: 400;
+}
+
+/* A hairline rule in the current zone's border colour. */
+@utility rule {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* Fine film grain. Pure CSS — no image request, no layout cost. */
+@utility grain {
+  position: relative;
+}
+
+/* ==========================================================================
+   DECORATIVE PRIMITIVES
+   ========================================================================== */
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Warm vignette that sits over cinematic imagery. */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% 10%, transparent 30%, rgba(13, 11, 9, 0.55) 78%, rgba(13, 11, 9, 0.92) 100%);
+}
+
+/* ==========================================================================
+   ANIMATION PRIMITIVES
+   Declared here rather than in JS so they cost nothing on the main thread.
+   ========================================================================== */
+
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ember-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--ember-peak, 0.7);
+  }
+  80% {
+    opacity: var(--ember-peak, 0.7);
+  }
+  100% {
+    transform: translate3d(var(--ember-x, 14px), -120px, 0) scale(0.4);
+    opacity: 0;
+  }
+}
+
+@keyframes flame-flicker {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.08);
+  }
+}
+
+@keyframes shimmer-sweep {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   Everything decorative stops. Everything functional stays.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Scroll-driven reveals must never leave content invisible. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

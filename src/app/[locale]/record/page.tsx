@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Trophy } from "lucide-react";
 import { RECORD } from "@/data/record";
-import { NAV } from "@/data/site";
+import { NAV, FOOTER_LINKS } from "@/data/site";
 import { UI } from "@/data/ui";
 import { isLocale, t, type Locale } from "@/lib/i18n";
 import { localeHref } from "@/lib/utils";
@@ -101,6 +101,7 @@ export default async function RecordPage({
             <Reveal delay={0.2} className="mt-14 flex flex-col items-center gap-10">
               <Button href={localeHref(locale, "/album")} withArrow magnetic>
                 {t(UI.viewAll, locale)}
+                <span className="sr-only"> — {t(FOOTER_LINKS[0].label, locale)}</span>
               </Button>
               <WarliChain count={7} className="w-full max-w-lg opacity-45" />
             </Reveal>

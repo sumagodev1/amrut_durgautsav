@@ -63,7 +63,7 @@ export default function GlobalNotFound() {
           <div className="relative">
             <a
               href={`/${locale}`}
-              className="font-[family-name:var(--font-devanagari)] text-xl text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
+              className="font-[family-name:var(--font-devanagari)] text-2xl text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
               lang="mr"
             >
               {t(SITE.festival, "mr")}{" "}
@@ -97,13 +97,13 @@ export default function GlobalNotFound() {
 
             <a
               href={`/${locale}`}
-              className="mt-10 inline-flex min-h-11 items-center rounded-[2px] bg-[var(--primary)] px-7 py-3.5 text-sm font-semibold text-[var(--primary-contrast)] transition-colors duration-300 hover:bg-[var(--accent)] hover:text-[var(--color-ink-900)]"
+              className="mt-10 inline-flex min-h-11 items-center rounded-[2px] bg-[var(--primary)] px-7 py-3.5 text-[0.9375rem] font-semibold text-[var(--primary-contrast)] transition-colors duration-300 hover:bg-[var(--accent)] hover:text-[var(--color-ink-900)]"
             >
               {t(UI.backHome, locale)}
             </a>
 
             <nav className="mt-14" aria-label={t(UI.menu, locale)}>
-              <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[var(--muted)]">
+              <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.9375rem] text-[var(--muted)]">
                 {NAV.map((item) => (
                   <li key={item.key}>
                     <a

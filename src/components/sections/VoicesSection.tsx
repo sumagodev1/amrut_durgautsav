@@ -57,19 +57,20 @@ export function VoicesSection({ locale }: { locale: Locale }) {
               )}
               <p
                 lang={locale}
-                className="text-lg text-[var(--foreground)]"
+                className="text-xl text-[var(--foreground)]"
               >
                 {t(lead.name, locale)}
               </p>
-              <p lang={locale} className="mt-1.5 text-sm text-[var(--muted)]">
+              <p lang={locale} className="mt-1.5 text-[0.9375rem] text-[var(--muted)]">
                 {t(lead.designation, locale)}
               </p>
               <Link
                 href={localeHref(locale, "/voices")}
                 data-cursor="link"
-                className="group mt-6 inline-flex items-center gap-2 border-b border-[var(--border)] pb-1 text-sm font-semibold transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                className="group mt-6 inline-flex items-center gap-2 border-b border-[var(--border)] pb-1 text-[0.9375rem] font-semibold transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
               >
                 {t(UI.readMore, locale)}
+                <span className="sr-only"> — {t(VOICES_META.heading, locale)}</span>
                 <ArrowRight
                   aria-hidden
                   className="size-4 transition-transform duration-400 ease-[var(--ease-out-expo)] group-hover:translate-x-1"
@@ -88,7 +89,7 @@ export function VoicesSection({ locale }: { locale: Locale }) {
                   <blockquote className="flex-1">
                     <p
                       lang={locale}
-                      className="line-clamp-5 font-[family-name:var(--font-devanagari)] text-[1.0625rem] leading-[1.75] text-[var(--foreground)]"
+                      className="line-clamp-5 font-[family-name:var(--font-devanagari)] text-lg leading-[1.75] text-[var(--foreground)]"
                     >
                       {t(voice.quote, locale)}
                     </p>
@@ -105,16 +106,16 @@ export function VoicesSection({ locale }: { locale: Locale }) {
                     ) : (
                       <span
                         aria-hidden
-                        className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[var(--border)] font-[family-name:var(--font-devanagari)] text-lg text-[var(--accent)]"
+                        className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[var(--border)] font-[family-name:var(--font-devanagari)] text-xl text-[var(--accent)]"
                       >
                         {t(voice.name, "mr").replace(/^श्री\.\s*/, "").charAt(0)}
                       </span>
                     )}
                     <span className="min-w-0">
-                      <span lang={locale} className="block text-[0.9375rem] text-[var(--foreground)]">
+                      <span lang={locale} className="block text-base text-[var(--foreground)]">
                         {t(voice.name, locale)}
                       </span>
-                      <span lang={locale} className="mt-0.5 block text-xs leading-snug text-[var(--muted)]">
+                      <span lang={locale} className="mt-0.5 block text-sm leading-snug text-[var(--muted)]">
                         {t(voice.designation, locale)}
                       </span>
                     </span>

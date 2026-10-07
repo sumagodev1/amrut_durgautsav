@@ -84,12 +84,12 @@ export default async function VoicesPage({
                         </span>
                       )}
                       <div>
-                        <p lang={locale} className="text-xl text-[var(--foreground)]">
+                        <p lang={locale} className="text-2xl text-[var(--foreground)]">
                           {t(voice.name, locale)}
                         </p>
                       </div>
                     </div>
-                    <p lang={locale} className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+                    <p lang={locale} className="mt-4 text-[0.9375rem] leading-relaxed text-[var(--muted)]">
                       {t(voice.designation, locale)}
                     </p>
                     <RampartRule className="mt-6 w-32" />

@@ -74,7 +74,7 @@ export default async function MissionPage({
 
           {opening.slice(1).map((para, i) => (
             <Reveal key={i} delay={0.04}>
-              <p lang={locale} className="mt-7 text-[1.0625rem] leading-[1.9] text-[var(--muted)]">
+              <p lang={locale} className="mt-7 text-lg leading-[1.9] text-[var(--muted)]">
                 {para}
               </p>
             </Reveal>
@@ -87,7 +87,7 @@ export default async function MissionPage({
                 <li
                   key={custom}
                   lang={locale}
-                  className="text-[1.0625rem] leading-[1.75] text-[var(--foreground)]"
+                  className="text-lg leading-[1.75] text-[var(--foreground)]"
                 >
                   {custom}
                 </li>
@@ -97,7 +97,7 @@ export default async function MissionPage({
 
           {body.slice(0, 2).map((para, i) => (
             <Reveal key={i}>
-              <p lang={locale} className="mt-7 text-[1.0625rem] leading-[1.9] text-[var(--muted)]">
+              <p lang={locale} className="mt-7 text-lg leading-[1.9] text-[var(--muted)]">
                 {para}
               </p>
             </Reveal>
@@ -121,7 +121,7 @@ export default async function MissionPage({
               />
               <figcaption
                 lang={locale}
-                className="mt-4 text-sm text-[var(--muted)]"
+                className="mt-4 text-[0.9375rem] text-[var(--muted)]"
               >
                 {locale === "mr"
                   ? "दिवाळीत दुर्गांच्या प्रतिकृती बांधण्याची प्रथा — महाराष्ट्राच्या गावखेड्यांपासून शहरांतील गृहसंकुलांपर्यंत."
@@ -134,7 +134,7 @@ export default async function MissionPage({
         <div className="container-prose">
           {body.slice(2).map((para, i) => (
             <Reveal key={i}>
-              <p lang={locale} className="mt-7 text-[1.0625rem] leading-[1.9] text-[var(--muted)]">
+              <p lang={locale} className="mt-7 text-lg leading-[1.9] text-[var(--muted)]">
                 {para}
               </p>
             </Reveal>

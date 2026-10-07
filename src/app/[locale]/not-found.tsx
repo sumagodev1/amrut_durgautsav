@@ -60,7 +60,7 @@ export default function NotFound() {
         </div>
 
         <nav className="mt-14" aria-label={t(UI.menu, locale)}>
-          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[var(--muted)]">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.9375rem] text-[var(--muted)]">
             {NAV.map((item) => (
               <li key={item.key}>
                 <Link

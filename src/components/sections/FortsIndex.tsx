@@ -107,7 +107,7 @@ export function FortsIndex({ locale }: { locale: Locale }) {
                   {/* Below the name on narrow screens; promoted into its own
                       columns on wide ones, so the row reads as an index
                       rather than a line of type with dead space after it. */}
-                  <span className="mt-1 block truncate text-xs text-[var(--muted)] sm:text-sm md:hidden">
+                  <span className="mt-1 block truncate text-sm text-[var(--muted)] sm:text-base md:hidden">
                     {t(fort.district, locale)}
                     <span aria-hidden className="mx-2 opacity-40">
                       ·
@@ -116,7 +116,7 @@ export function FortsIndex({ locale }: { locale: Locale }) {
                   </span>
                 </span>
 
-                <span className="relative hidden w-40 shrink-0 truncate text-right text-sm text-[var(--muted)] md:block lg:w-52">
+                <span className="relative hidden w-40 shrink-0 truncate text-right text-[0.9375rem] text-[var(--muted)] md:block lg:w-52">
                   {t(fort.district, locale)}
                 </span>
                 <span
@@ -180,7 +180,7 @@ export function FortsIndex({ locale }: { locale: Locale }) {
                     >
                       {t(TYPOLOGY_LABEL[active.typology], locale)}
                     </p>
-                    <p className="mt-1.5 text-sm text-[var(--muted)]">
+                    <p className="mt-1.5 text-[0.9375rem] text-[var(--muted)]">
                       {t(active.district, locale)}, {t(active.state, locale)}
                     </p>
                   </div>

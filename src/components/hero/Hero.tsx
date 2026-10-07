@@ -45,7 +45,7 @@ export function Hero({ locale }: { locale: Locale }) {
             <div className="max-w-md border-l border-[color-mix(in_srgb,var(--color-gold-500)_32%,transparent)] pl-5 sm:pl-7">
               <p
                 lang={locale}
-                className="text-[0.9375rem] leading-[1.85] text-[color-mix(in_srgb,var(--color-paper-100)_88%,transparent)] sm:text-base"
+                className="text-base leading-[1.85] text-[color-mix(in_srgb,var(--color-paper-100)_88%,transparent)] sm:text-[1.0625rem]"
               >
                 {t(HERO.lede, locale)}
               </p>
@@ -57,7 +57,7 @@ export function Hero({ locale }: { locale: Locale }) {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button href={localeHref(locale, "/participate")} withArrow magnetic>
+                <Button href={localeHref(locale, "/participate#register")} withArrow magnetic>
                   {t(UI.register, locale)}
                 </Button>
                 <Button href={localeHref(locale, "/forts")} variant="outline">

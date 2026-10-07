@@ -65,7 +65,7 @@ export function DistrictFilter({
             onClick={() => select(option.id)}
             data-cursor="link"
             className={cn(
-              "rounded-[2px] border px-3.5 py-2 text-[0.8125rem] transition-colors duration-300",
+              "rounded-[2px] border px-3.5 py-2 text-[0.9375rem] transition-colors duration-300",
               locale === "mr" && "font-[family-name:var(--font-devanagari)]",
               active
                 ? "border-[var(--primary)] bg-[var(--primary)] text-[var(--primary-contrast)]"

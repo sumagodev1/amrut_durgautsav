@@ -76,7 +76,7 @@ export function TimelineSection({ locale }: { locale: Locale }) {
                         {entry.body && (
                           <p
                             lang={locale}
-                            className="mt-3 max-w-2xl text-[0.9375rem] leading-[1.85] text-[var(--muted)]"
+                            className="mt-3 max-w-2xl text-base leading-[1.85] text-[var(--muted)]"
                           >
                             {t(entry.body, locale)}
                           </p>

@@ -76,7 +76,7 @@ export default async function FaqPage({
                       </dt>
                       <dd
                         lang={locale}
-                        className="mt-3.5 max-w-2xl text-[1.0625rem] leading-[1.85] text-[var(--muted)]"
+                        className="mt-3.5 max-w-2xl text-lg leading-[1.85] text-[var(--muted)]"
                       >
                         {t(item.answer, locale)}
                       </dd>

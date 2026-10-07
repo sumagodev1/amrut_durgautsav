@@ -50,9 +50,9 @@ the code:
 Where a fact was not available it was left out rather than invented. The
 clearest example is the participation counter: the figure comes from the live
 platform, and when that cannot be reached the band renders without it instead
-of showing a placeholder number. Likewise `/participate` states only that
-registration opens on 13 October, because that is all the source site states —
-there is no invented registration form or URL.
+of showing a placeholder number. The same principle shapes the
+[registration form](#registration): no invented platform URL, and no success
+message unless the submission actually went somewhere.
 
 ---
 
@@ -118,6 +118,36 @@ two institutional marks drop away and the festival lockup carries on alone —
 at phone widths all four would shrink the emblem past legibility, and the
 attribution is repeated in the footer regardless.
 
+### Registration
+
+`/participate#register` carries a real form. Every "नोंदणी करा" CTA on the
+site points at that anchor.
+
+It is a plain `<form action={serverAction}>`, so it submits and validates
+**with JavaScript disabled**; `useActionState` only adds the pending state and
+refills the fields when validation sends the form back. Validation runs on the
+server — the browser's `required` and `type` attributes are a courtesy to the
+person filling it in, not a check.
+
+The fields are exactly those the campaign's own privacy policy says it
+collects (नाव, ईमेल, मोबाईल क्रमांक व शहर), plus an optional fort and a
+required consent box that links to the policy.
+
+Submission has three honest outcomes and no fourth:
+
+| | when |
+| --- | --- |
+| **success** | `REGISTRATION_ENDPOINT` is configured and accepted the entry |
+| **handoff** | no endpoint configured — the details are handed to WhatsApp, prefilled and formatted, over the number the campaign already publishes |
+| **error** | validation failed, or the endpoint refused |
+
+There is deliberately no path where the form reports success while the data
+goes nowhere. Until an endpoint exists, the handoff means the form is useful
+today rather than decorative.
+
+A hidden honeypot field absorbs simple bots. Mobile numbers are normalised
+(`+91`, spaces and dashes stripped) before validation and before sending.
+
 ### Typography across two scripts
 
 Devanagari and Latin need different display faces and different metrics.
@@ -131,6 +161,27 @@ metrics.
 Devanagari line-heights are deliberately looser than their Latin counterparts.
 दुर्गोत्सव sets its repha (र्) above the shirorekha, and a tight line box inside
 an `overflow-hidden` parent shears it off — the word then reads as "दुगोत्सव".
+
+### Type scale
+
+The whole scale sits in `globals.css` and every step was raised one notch —
+small labels most of all, where Devanagari suffered worst. An 11px eyebrow
+with `line-height: 1` was both hard to read and clipping its own ascenders;
+it is now 13px Latin / 15px Devanagari with room around it.
+
+Devanagari carries more detail per glyph than Latin at the same nominal size,
+so `text-eyebrow-mr` runs two steps larger than `text-eyebrow`, and the
+Devanagari heading steps are set independently of the Latin ones.
+
+Two layout consequences, both handled:
+
+- The desktop nav moved from `lg` (1024px) to `xl` (1280px). At 1024 the
+  four-part lockup plus six Devanagari nav items no longer fit on one line —
+  the nav wrapped and overlapped the wordmark. Below 1280 the hamburger takes
+  over.
+- `NavItem` gained an optional `short` label. Nav items want to be terse while
+  page titles and breadcrumbs want the full form; sharing one string forced
+  the English bar to carry "The Twelve Forts" and overflow at 1280.
 
 ### Motion
 
@@ -183,6 +234,8 @@ All optional — defaults point at the live Durgotsav services.
 | `NEXT_PUBLIC_GALLERY_API` | Gallery photographs endpoint |
 | `NEXT_PUBLIC_ALBUM_API` | World-record album endpoint |
 | `NEXT_PUBLIC_STATS_API` | Participation count endpoint |
+| `REGISTRATION_ENDPOINT` | Server-only. Where registrations are POSTed as JSON. Unset → WhatsApp handoff |
+| `REGISTRATION_TOKEN` | Server-only. Sent as `Authorization: Bearer …` with each registration |
 
 Set `NEXT_PUBLIC_SITE_URL` in production — canonical URLs and the sitemap
 depend on it.
@@ -212,6 +265,11 @@ depend on it.
   source site all three are `href="#"` placeholders, and no official accounts
   could be verified. Paste a URL into the matching entry and the icon appears
   everywhere at once, including in the `sameAs` structured data.
+- **Lighthouse accessibility reads 96–97 on pages whose content sits in a
+  scroll reveal**, flagging contrast on elements it sampled while they were
+  still fading in. Measured once settled, those same elements are 5.2:1 and
+  5.6:1 against 4.5:1 required. It is a measurement artifact of scroll-driven
+  animation, not a barrier — but worth knowing before someone re-runs the audit.
 - Gallery and album read live endpoints that were unreachable from the build
   environment, so those two surfaces were verified through their empty states
   rather than with real photographs.

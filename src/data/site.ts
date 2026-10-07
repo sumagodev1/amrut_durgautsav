@@ -111,7 +111,13 @@ export const ACTIVE_SOCIAL = SOCIAL.filter(
 export type NavItem = {
   key: string;
   href: string;
+  /** Full form — page titles, breadcrumbs, footer directory. */
   label: LocalizedText;
+  /**
+   * Terse form for the top bar, where six items share the row with the
+   * lockup and the controls. Falls back to `label`.
+   */
+  short?: LocalizedText;
 };
 
 /**
@@ -123,11 +129,13 @@ export const NAV: readonly NavItem[] = [
     key: "mission",
     href: "/mission",
     label: { mr: "मोहिमेचे उद्दीष्ट", en: "The Mission" },
+    short: { mr: "उद्दीष्ट", en: "Mission" },
   },
   {
     key: "forts",
     href: "/forts",
     label: { mr: "बारा दुर्ग", en: "The Twelve Forts" },
+    short: { mr: "बारा दुर्ग", en: "The Forts" },
   },
   {
     key: "participate",
@@ -143,6 +151,7 @@ export const NAV: readonly NavItem[] = [
     key: "record",
     href: "/record",
     label: { mr: "विश्वविक्रम", en: "World Record" },
+    short: { mr: "विश्वविक्रम", en: "Record" },
   },
   {
     key: "voices",

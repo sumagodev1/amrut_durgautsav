@@ -39,9 +39,9 @@ export function Pagination({
   const hasNext = page < totalPages;
 
   const linkClass =
-    "inline-flex min-h-11 items-center gap-2 rounded-[2px] border border-[var(--border)] px-4 py-2.5 text-sm transition-colors duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]";
+    "inline-flex min-h-11 items-center gap-2 rounded-[2px] border border-[var(--border)] px-4 py-2.5 text-[0.9375rem] transition-colors duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]";
   const disabledClass =
-    "inline-flex min-h-11 items-center gap-2 rounded-[2px] border border-[var(--border)] px-4 py-2.5 text-sm opacity-40";
+    "inline-flex min-h-11 items-center gap-2 rounded-[2px] border border-[var(--border)] px-4 py-2.5 text-[0.9375rem] opacity-40";
 
   return (
     <nav
@@ -60,7 +60,7 @@ export function Pagination({
         </span>
       )}
 
-      <p className="text-sm text-[var(--muted)] tabular-nums">
+      <p className="text-[0.9375rem] text-[var(--muted)] tabular-nums">
         {t(UI.page, locale)} {formatNumber(page, locale)}
         <span aria-hidden className="mx-1.5 opacity-50">
           /

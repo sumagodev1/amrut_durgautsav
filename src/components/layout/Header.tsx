@@ -52,7 +52,7 @@ export function Header({ locale }: { locale: Locale }) {
         <div className="container-page flex h-[72px] items-center justify-between gap-6 lg:h-20">
           <BrandLockup locale={locale} />
 
-          <nav aria-label={t(UI.menu, locale)} className="hidden lg:block">
+          <nav aria-label={t(UI.menu, locale)} className="hidden xl:block">
             <ul className="flex items-center gap-1">
               {NAV.map((item) => {
                 const href = localeHref(locale, item.href);
@@ -64,20 +64,20 @@ export function Header({ locale }: { locale: Locale }) {
                       aria-current={active ? "page" : undefined}
                       data-cursor="link"
                       className={cn(
-                        "group relative inline-flex items-center px-3.5 py-2 text-[0.8125rem] font-semibold tracking-wide transition-colors duration-300",
-                        locale === "mr" && "font-[family-name:var(--font-devanagari)] text-sm",
+                        "group relative inline-flex items-center px-3 py-2 text-[0.9375rem] font-semibold tracking-wide transition-colors duration-300",
+                        locale === "mr" && "font-[family-name:var(--font-devanagari)] text-[0.9375rem]",
                         active
                           ? "text-[var(--accent)]"
                           : "text-[color-mix(in_srgb,var(--color-paper-50)_78%,transparent)] hover:text-[var(--color-paper-50)]",
                       )}
                     >
-                      {t(item.label, locale)}
+                      {t(item.short ?? item.label, locale)}
                       {/* Underline that grows from the centre on hover, and
                           stays put when the item is the current page. */}
                       <span
                         aria-hidden
                         className={cn(
-                          "absolute inset-x-3.5 bottom-1 h-px origin-center bg-[var(--color-gold-400)] transition-transform duration-400 ease-[var(--ease-out-expo)]",
+                          "absolute inset-x-3 bottom-1 h-px origin-center bg-[var(--color-gold-400)] transition-transform duration-400 ease-[var(--ease-out-expo)]",
                           active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                         )}
                       />
@@ -95,10 +95,10 @@ export function Header({ locale }: { locale: Locale }) {
                 className: the Button sets its own `display`, and Tailwind
                 emits that utility after `hidden`, so a `hidden` passed in
                 here would silently lose. */}
-            <span className="hidden lg:block">
+            <span className="hidden xl:block">
               <Button
-                href={localeHref(locale, "/participate")}
-                className="px-5 py-2.5 text-[0.8125rem]"
+                href={localeHref(locale, "/participate#register")}
+                className="px-5 py-2.5 text-[0.9375rem]"
                 magnetic
               >
                 {t(UI.registerShort, locale)}
@@ -111,7 +111,7 @@ export function Header({ locale }: { locale: Locale }) {
               aria-label={t(UI.menuOpen, locale)}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
-              className="-mr-2 inline-flex size-11 items-center justify-center text-[var(--color-paper-50)] transition-colors hover:text-[var(--color-gold-300)] lg:hidden"
+              className="-mr-2 inline-flex size-11 items-center justify-center text-[var(--color-paper-50)] transition-colors hover:text-[var(--color-gold-300)] xl:hidden"
             >
               <Menu className="size-6" strokeWidth={1.5} />
             </button>

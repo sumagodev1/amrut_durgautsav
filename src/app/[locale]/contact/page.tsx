@@ -120,7 +120,7 @@ export default async function ContactPage({
                             </span>
                             <span
                               dir={"ltr" in channel && channel.ltr ? "ltr" : undefined}
-                              className="mt-1.5 block truncate text-[1.0625rem] text-[var(--foreground)] transition-colors group-hover:text-[var(--primary)] sm:text-xl"
+                              className="mt-1.5 block truncate text-lg leading-[1.45] text-[var(--foreground)] transition-colors group-hover:text-[var(--primary)] sm:text-xl"
                             >
                               {channel.value}
                             </span>
@@ -166,7 +166,7 @@ export default async function ContactPage({
                     </h2>
                     <address
                       lang={locale}
-                      className="mt-4 whitespace-pre-line text-[1.0625rem] leading-[1.9] not-italic text-[var(--foreground)]"
+                      className="mt-4 whitespace-pre-line text-lg leading-[1.9] not-italic text-[var(--foreground)]"
                     >
                       {t(CONTACT.address, locale)}
                     </address>

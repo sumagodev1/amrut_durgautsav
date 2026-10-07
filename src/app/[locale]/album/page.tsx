@@ -66,7 +66,7 @@ export default async function AlbumPage({
             {RECORD.title}
           </p>
           {total > 0 && (
-            <p className="mt-2 text-sm text-[var(--muted)] tabular-nums">
+            <p className="mt-2 text-[0.9375rem] text-[var(--muted)] tabular-nums">
               {locale === "mr" ? "एकूण छायाचित्रे" : "Total photos"}:{" "}
               {formatNumber(total, locale)}
             </p>

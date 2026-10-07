@@ -113,13 +113,13 @@ export default async function FortsPage({
                         />
                       </div>
 
-                      <p className="mt-1.5 text-sm text-[var(--muted)]">
+                      <p className="mt-1.5 text-[0.9375rem] text-[var(--muted)]">
                         {t(fort.district, locale)}, {t(fort.state, locale)}
                       </p>
 
                       <p
                         lang={locale}
-                        className="mt-4 flex-1 text-[0.9375rem] leading-[1.8] text-[var(--muted)]"
+                        className="mt-4 flex-1 text-base leading-[1.8] text-[var(--muted)]"
                       >
                         {t(fort.summary, locale)}
                       </p>
@@ -131,7 +131,7 @@ export default async function FortsPage({
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p lang={locale} className="mt-10 max-w-2xl text-sm text-[var(--muted)]">
+            <p lang={locale} className="mt-10 max-w-2xl text-[0.9375rem] text-[var(--muted)]">
               {t(FORTS_META.note, locale)}
             </p>
           </Reveal>

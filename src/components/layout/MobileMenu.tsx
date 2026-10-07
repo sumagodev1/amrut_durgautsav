@@ -164,13 +164,13 @@ export function MobileMenu({
               exit={reduced ? undefined : "exit"}
               className="mt-9"
             >
-              <Button href={localeHref(locale, "/participate")} withArrow className="w-full">
+              <Button href={localeHref(locale, "/participate#register")} withArrow className="w-full">
                 {t(UI.register, locale)}
               </Button>
 
               <RampartRule className="mt-10 w-full" />
 
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2.5 text-sm text-[var(--muted)]">
+              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2.5 text-[0.9375rem] text-[var(--muted)]">
                 {FOOTER_LINKS.map((item) => (
                   <li key={item.key}>
                     <Link
@@ -184,7 +184,7 @@ export function MobileMenu({
                 ))}
               </ul>
 
-              <div className="mt-7 space-y-1.5 text-sm">
+              <div className="mt-7 space-y-1.5 text-[0.9375rem]">
                 <a
                   href={`mailto:${CONTACT.email}`}
                   className="block text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
@@ -201,7 +201,7 @@ export function MobileMenu({
                 <SocialLinks className="pt-3" size="compact" />
               </div>
 
-              <p className="mt-8 text-xs text-[var(--muted)]">{t(SITE.organisation, locale)}</p>
+              <p className="mt-8 text-sm text-[var(--muted)]">{t(SITE.organisation, locale)}</p>
             </motion.div>
           </nav>
         </motion.div>

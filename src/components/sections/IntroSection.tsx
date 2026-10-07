@@ -71,7 +71,7 @@ export function IntroSection({ locale }: { locale: Locale }) {
               <Link
                 href={localeHref(locale, "/mission")}
                 data-cursor="link"
-                className="group mt-9 inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                className="group mt-9 inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-[0.9375rem] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
               >
                 {t(MISSION.eyebrow, locale)}
                 <ArrowRight
@@ -111,7 +111,7 @@ export function IntroSection({ locale }: { locale: Locale }) {
                   </Display>
                   <p
                     lang={locale}
-                    className="mt-4 text-[0.9375rem] leading-[1.85] text-[var(--muted)]"
+                    className="mt-4 text-base leading-[1.85] text-[var(--muted)]"
                   >
                     {t(WHAT_TO_DO.body, locale)}
                   </p>

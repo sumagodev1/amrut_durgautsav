@@ -115,7 +115,7 @@ export default async function FortPage({
           )}
 
           {!fort.image && (
-            <p lang={locale} className="mt-4 max-w-2xl text-xs text-[var(--muted)]">
+            <p lang={locale} className="mt-4 max-w-2xl text-sm text-[var(--muted)]">
               {locale === "mr"
                 ? "या किल्ल्याचे छायाचित्र उपलब्ध नसल्याने येथे त्याच्या प्रकारानुसार रेखाचित्र दिले आहे."
                 : "We do not hold a photograph of this fort, so it is represented here by a drawing of its site type."}
@@ -147,14 +147,14 @@ export default async function FortPage({
                   </Display>
                   <p
                     lang={locale}
-                    className="mt-3 max-w-xl text-[0.9375rem] leading-[1.85] text-[var(--muted)]"
+                    className="mt-3 max-w-xl text-base leading-[1.85] text-[var(--muted)]"
                   >
                     {locale === "mr"
                       ? "या बारा दुर्गांपैकी कोणत्याही एकाची प्रतिकृती बनवा, फोटो काढा आणि व्यासपीठावर अपलोड करा."
                       : "Build a replica of any one of these twelve forts, photograph it, and upload it to the platform."}
                   </p>
                   <div className="mt-6">
-                    <Button href={localeHref(locale, "/participate")} withArrow magnetic>
+                    <Button href={localeHref(locale, "/participate#register")} withArrow magnetic>
                       {t(UI.register, locale)}
                     </Button>
                   </div>
@@ -210,7 +210,7 @@ export default async function FortPage({
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="link"
-                    className="group mt-8 inline-flex items-center gap-2 border-b border-[var(--border)] pb-1 text-sm text-[var(--muted)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                    className="group mt-8 inline-flex items-center gap-2 border-b border-[var(--border)] pb-1 text-[0.9375rem] text-[var(--muted)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
                   >
                     <MapPin aria-hidden className="size-4" strokeWidth={1.6} />
                     <span className="tabular-nums" dir="ltr">
@@ -267,7 +267,7 @@ export default async function FortPage({
                         className="mt-1 size-4 shrink-0 text-[var(--muted)] transition-all duration-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent)]"
                       />
                     </span>
-                    <span className="mt-1.5 text-sm text-[var(--muted)]">
+                    <span className="mt-1.5 text-[0.9375rem] text-[var(--muted)]">
                       {t(other.district, locale)}
                     </span>
                   </Link>
@@ -330,7 +330,7 @@ function Fact({
   return (
     <div className="border-b border-[var(--border)] pb-5">
       <dt className={cn(eyebrowClass(label), "text-[var(--muted)]")}>{label}</dt>
-      <dd lang={locale} className="mt-2 text-[0.9375rem] leading-relaxed text-[var(--foreground)]">
+      <dd lang={locale} className="mt-2 text-base leading-relaxed text-[var(--foreground)]">
         {value}
       </dd>
     </div>

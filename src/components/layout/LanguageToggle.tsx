@@ -55,7 +55,7 @@ export function LanguageToggle({
               data-cursor="link"
               className={cn(
                 "rounded-[2px] px-1 transition-colors duration-300",
-                size === "lg" ? "py-2 text-base" : "py-1 text-xs",
+                size === "lg" ? "py-2 text-[1.0625rem]" : "py-1 text-sm",
                 option === "mr" && "font-[family-name:var(--font-devanagari)]",
                 active
                   ? "text-[var(--accent)]"

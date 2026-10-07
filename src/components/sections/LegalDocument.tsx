@@ -47,7 +47,7 @@ export function LegalDocument({
                   {section.body && (
                     <p
                       lang={locale}
-                      className="mt-4 text-[1.0625rem] leading-[1.9] text-[var(--muted)]"
+                      className="mt-4 text-lg leading-[1.9] text-[var(--muted)]"
                     >
                       {t(section.body, locale)}
                     </p>
@@ -59,7 +59,7 @@ export function LegalDocument({
                         <li
                           key={bullet}
                           lang={locale}
-                          className="text-[1.0625rem] leading-[1.8] text-[var(--muted)]"
+                          className="text-lg leading-[1.8] text-[var(--muted)]"
                         >
                           {bullet}
                         </li>
@@ -81,7 +81,7 @@ export function LegalDocument({
               ))}
             </ol>
 
-            <p className="mt-16 border-t border-[var(--border)] pt-6 text-sm text-[var(--muted)]">
+            <p className="mt-16 border-t border-[var(--border)] pt-6 text-[0.9375rem] text-[var(--muted)]">
               {t(document.updated, locale)}
             </p>
           </Reveal>

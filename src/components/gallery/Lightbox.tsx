@@ -166,7 +166,7 @@ export function Lightbox({
           {(photo.caption || photo.district) && (
             <div className="shrink-0 px-[var(--spacing-gutter)] pb-6 text-center">
               {photo.caption && (
-                <p className="text-sm text-[var(--color-paper-100)]">{photo.caption}</p>
+                <p className="text-[0.9375rem] text-[var(--color-paper-100)]">{photo.caption}</p>
               )}
               {photo.district && (
                 <p

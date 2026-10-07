@@ -48,7 +48,7 @@ export function PageHero({
       <div className="container-page relative">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-1.5 text-xs text-[var(--muted)]">
+          <ol className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--muted)]">
             <li>
               <Link
                 href={localeHref(locale, "/")}

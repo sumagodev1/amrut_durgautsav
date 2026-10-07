@@ -103,7 +103,7 @@ function Figure({
       <dt
         lang={locale}
         className={cn(
-          "order-2 mt-3 text-lg text-[var(--foreground)]",
+          "order-2 mt-3 text-xl text-[var(--foreground)]",
           locale === "mr" && "font-[family-name:var(--font-devanagari)]",
         )}
       >
@@ -112,7 +112,7 @@ function Figure({
       <dd className="order-1 font-[family-name:var(--font-devanagari)] text-[clamp(3rem,2rem+5vw,6rem)] leading-[0.95] text-[var(--accent)] tabular-nums">
         {value}
       </dd>
-      <dd lang={locale} className="order-3 mt-1.5 ml-0 max-w-xs text-sm text-[var(--muted)]">
+      <dd lang={locale} className="order-3 mt-1.5 ml-0 max-w-xs text-[0.9375rem] text-[var(--muted)]">
         {caption}
       </dd>
     </div>

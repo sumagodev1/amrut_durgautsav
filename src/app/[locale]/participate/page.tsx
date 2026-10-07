@@ -13,6 +13,8 @@ import { Reveal, RevealItem } from "@/components/ui/Reveal";
 import { Display, Eyebrow } from "@/components/ui/Typo";
 import { Button } from "@/components/ui/Button";
 import { RuledFrame, GatewayMotif } from "@/components/decor/Ornament";
+import { RegistrationForm } from "@/components/forms/RegistrationForm";
+import { REGISTRATION } from "@/data/registration";
 import { cn, eyebrowClass } from "@/lib/utils";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -102,7 +104,7 @@ export default async function ParticipatePage({
                         </Display>
                         <p
                           lang={locale}
-                          className="mt-3 text-[0.9375rem] leading-[1.85] text-[var(--muted)]"
+                          className="mt-3 text-base leading-[1.85] text-[var(--muted)]"
                         >
                           {t(step.body, locale)}
                         </p>
@@ -113,6 +115,40 @@ export default async function ParticipatePage({
               })}
             </ol>
           </Reveal>
+        </div>
+      </section>
+
+      {/* --- The form --------------------------------------------------- */}
+      <section
+        id="register"
+        className="zone-ink scroll-mt-24 border-t border-[var(--border)] py-20 sm:py-28"
+        aria-labelledby="register-heading"
+      >
+        <div className="container-page">
+          <div className="mx-auto max-w-3xl">
+            <Reveal className="text-center">
+              <Eyebrow className="justify-center">{t(REGISTRATION.eyebrow, locale)}</Eyebrow>
+              <Display locale={locale} level="h2" className="mt-6 text-[var(--foreground)]">
+                <span id="register-heading">{t(REGISTRATION.heading, locale)}</span>
+              </Display>
+              <p lang={locale} className="text-lede mx-auto mt-5 max-w-xl text-[var(--muted)]">
+                {t(REGISTRATION.lede, locale)}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.08} className="mt-12">
+              <RegistrationForm locale={locale} />
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <p
+                lang={locale}
+                className="mt-6 text-center text-[0.9375rem] text-[var(--muted)]"
+              >
+                {t(REGISTRATION_NOTICE.body, locale)}
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -135,11 +171,11 @@ export default async function ParticipatePage({
                     >
                       <span
                         lang={locale}
-                        className="w-44 shrink-0 font-[family-name:var(--font-devanagari)] text-lg text-[var(--accent)]"
+                        className="w-44 shrink-0 font-[family-name:var(--font-devanagari)] text-xl text-[var(--accent)]"
                       >
                         {t(entry.date, locale)}
                       </span>
-                      <span lang={locale} className="text-[0.9375rem] text-[var(--foreground)]">
+                      <span lang={locale} className="text-base text-[var(--foreground)]">
                         {t(entry.title, locale)}
                       </span>
                     </RevealItem>
@@ -164,7 +200,7 @@ export default async function ParticipatePage({
                     </p>
                     <p
                       lang={locale}
-                      className="mt-4 text-[1.0625rem] leading-[1.85] text-[var(--foreground)]"
+                      className="mt-4 text-lg leading-[1.85] text-[var(--foreground)]"
                     >
                       {t(REGISTRATION_NOTICE.body, locale)}
                     </p>

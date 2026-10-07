@@ -88,7 +88,7 @@ export function BrandLockup({
         <span
           className={cn(
             "font-[family-name:var(--font-devanagari)] tracking-tight text-[var(--foreground)]",
-            header ? "text-[1.0625rem] sm:text-lg" : "text-xl",
+            header ? "text-lg sm:text-xl" : "text-2xl",
           )}
         >
           {t(SITE.festival, "mr")}
@@ -97,7 +97,7 @@ export function BrandLockup({
         <span
           className={cn(
             "mt-1 font-[family-name:var(--font-devanagari)] text-[var(--muted)]",
-            header ? "text-[0.625rem]" : "text-[0.6875rem]",
+            header ? "text-xs" : "text-[0.6875rem]",
           )}
         >
           {t(SITE.parentBrand, locale)}

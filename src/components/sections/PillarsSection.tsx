@@ -65,7 +65,7 @@ export function PillarsSection({ locale }: { locale: Locale }) {
                         </Display>
                         <p
                           lang={locale}
-                          className="mt-3.5 max-w-2xl text-[0.9375rem] leading-[1.85] text-[var(--muted)] sm:text-base"
+                          className="mt-3.5 max-w-2xl text-base leading-[1.85] text-[var(--muted)] sm:text-[1.0625rem]"
                         >
                           {t(pillar.body, locale)}
                         </p>

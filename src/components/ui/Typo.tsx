@@ -115,7 +115,7 @@ export function Prose({
     <div
       lang={locale}
       className={cn(
-        size === "lede" ? "text-lede" : "text-[0.9375rem] leading-[1.8] sm:text-base",
+        size === "lede" ? "text-lede" : "text-base leading-[1.8] sm:text-[1.0625rem]",
         locale === "mr" && "leading-[1.9]",
         "text-[var(--muted)]",
         className,

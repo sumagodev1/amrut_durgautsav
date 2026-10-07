@@ -42,7 +42,7 @@ export default function Error({
       <button
         type="button"
         onClick={reset}
-        className="group mt-9 inline-flex min-h-11 items-center gap-2.5 rounded-[2px] bg-[var(--primary)] px-7 py-3.5 text-sm font-semibold text-[var(--primary-contrast)] transition-colors duration-300 hover:bg-[var(--accent)] hover:text-[var(--color-ink-900)]"
+        className="group mt-9 inline-flex min-h-11 items-center gap-2.5 rounded-[2px] bg-[var(--primary)] px-7 py-3.5 text-[0.9375rem] font-semibold text-[var(--primary-contrast)] transition-colors duration-300 hover:bg-[var(--accent)] hover:text-[var(--color-ink-900)]"
       >
         <RotateCcw
           aria-hidden

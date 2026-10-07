@@ -45,9 +45,10 @@ export function FortsSection({ locale }: { locale: Locale }) {
             <Link
               href={localeHref(locale, "/forts")}
               data-cursor="link"
-              className="group inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="group inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-[0.9375rem] font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               {t(UI.viewAll, locale)}
+              <span className="sr-only"> — {t(FORTS_META.heading, locale)}</span>
               <ArrowRight
                 aria-hidden
                 className="size-4 transition-transform duration-400 ease-[var(--ease-out-expo)] group-hover:translate-x-1"
@@ -63,7 +64,7 @@ export function FortsSection({ locale }: { locale: Locale }) {
         <Reveal delay={0.1}>
           <p
             lang={locale}
-            className="mt-8 text-sm text-[var(--muted)]"
+            className="mt-8 text-[0.9375rem] text-[var(--muted)]"
           >
             {t(FORTS_META.note, locale)}
           </p>

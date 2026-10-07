@@ -69,7 +69,7 @@ export function ParticipateSection({ locale }: { locale: Locale }) {
                       </span>
                       <span
                         aria-hidden
-                        className="absolute -top-1 -right-1 z-10 flex size-6 items-center justify-center rounded-full bg-[var(--primary)] text-[0.625rem] font-semibold text-[var(--primary-contrast)] tabular-nums"
+                        className="absolute -top-1 -right-1 z-10 flex size-6 items-center justify-center rounded-full bg-[var(--primary)] text-xs font-semibold text-[var(--primary-contrast)] tabular-nums"
                       >
                         {formatIndex(i + 1, locale)}
                       </span>
@@ -86,7 +86,7 @@ export function ParticipateSection({ locale }: { locale: Locale }) {
                       </Display>
                       <p
                         lang={locale}
-                        className="mt-3 text-[0.9375rem] leading-[1.8] text-[var(--muted)]"
+                        className="mt-3 text-base leading-[1.8] text-[var(--muted)]"
                       >
                         {t(step.body, locale)}
                       </p>
@@ -101,7 +101,7 @@ export function ParticipateSection({ locale }: { locale: Locale }) {
         <Reveal delay={0.15} className="mt-16 flex flex-col items-center">
           <GatewayMotif className="opacity-40" />
           <div className="mt-6">
-            <Button href={localeHref(locale, "/participate")} withArrow magnetic>
+            <Button href={localeHref(locale, "/participate#register")} withArrow magnetic>
               {t(UI.register, locale)}
             </Button>
           </div>

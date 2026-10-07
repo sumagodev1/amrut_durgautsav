@@ -74,7 +74,7 @@ export function Cursor() {
       style={{ x: springX, y: springY }}
     >
       <motion.div
-        className="flex items-center justify-center rounded-full border border-[var(--color-gold-400)] text-[0.625rem] font-semibold tracking-[0.18em] text-[var(--color-gold-300)] uppercase backdrop-blur-[2px]"
+        className="flex items-center justify-center rounded-full border border-[var(--color-gold-400)] text-xs font-semibold tracking-[0.18em] text-[var(--color-gold-300)] uppercase backdrop-blur-[2px]"
         animate={{
           width: label ? 76 : isLink ? 34 : 14,
           height: label ? 76 : isLink ? 34 : 14,

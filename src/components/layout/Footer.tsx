@@ -45,7 +45,7 @@ export function Footer({ locale }: { locale: Locale }) {
               {t(FINAL_CTA.body, locale)}
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <Button href={localeHref(locale, "/participate")} withArrow magnetic>
+              <Button href={localeHref(locale, "/participate#register")} withArrow magnetic>
                 {t(UI.register, locale)}
               </Button>
               <Button href={localeHref(locale, "/forts")} variant="outline">
@@ -62,7 +62,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="lg:col-span-4">
             <BrandLockup locale={locale} size="footer" />
 
-            <p lang={locale} className="mt-6 max-w-sm text-sm leading-[1.85] text-[var(--muted)]">
+            <p lang={locale} className="mt-6 max-w-sm text-[0.9375rem] leading-[1.85] text-[var(--muted)]">
               {t(FINAL_CTA.closing, locale)}
             </p>
 
@@ -85,7 +85,7 @@ export function Footer({ locale }: { locale: Locale }) {
                   <Link
                     href={localeHref(locale, item.href)}
                     data-cursor="link"
-                    className="group inline-flex min-h-6 items-center py-0.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+                    className="group inline-flex min-h-6 items-center py-0.5 text-[0.9375rem] text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
                   >
                     <span
                       aria-hidden
@@ -105,7 +105,7 @@ export function Footer({ locale }: { locale: Locale }) {
             >
               {t(UI.contactHeading, locale)}
             </h2>
-            <ul className="mt-5 space-y-4 text-sm">
+            <ul className="mt-5 space-y-4 text-[0.9375rem]">
               <li className="flex gap-3">
                 <Mail aria-hidden className="mt-0.5 size-4 shrink-0 text-[var(--accent)] opacity-70" />
                 <span>
@@ -158,7 +158,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         {/* --- Baseline ---------------------------------------------------- */}
-        <div className="container-page flex flex-col gap-4 border-t border-[var(--border)] py-6 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-page flex flex-col gap-4 border-t border-[var(--border)] py-6 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {t(SITE.parentBrand, locale)}. {t(UI.copyright, locale)}
           </p>

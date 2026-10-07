@@ -77,7 +77,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
                 height={64}
                 className="size-14"
               />
-              <span className="font-[family-name:var(--font-devanagari)] text-lg tracking-wide text-[var(--color-paper-50)]">
+              <span className="font-[family-name:var(--font-devanagari)] text-xl tracking-wide text-[var(--color-paper-50)]">
                 {t(SITE.festival, "mr")}{" "}
                 <span className="text-[var(--color-gold-400)]">{t(SITE.year, "mr")}</span>
               </span>

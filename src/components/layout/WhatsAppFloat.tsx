@@ -37,7 +37,7 @@ export function WhatsAppFloat({ locale }: { locale: Locale }) {
         "fixed right-4 bottom-4 z-[60] inline-flex items-center gap-2.5 rounded-[2px]",
         "border border-[color-mix(in_srgb,var(--color-gold-500)_35%,transparent)]",
         "bg-[color-mix(in_srgb,var(--color-ink-800)_92%,transparent)] px-4 py-3 backdrop-blur-md",
-        "text-sm font-semibold text-[var(--color-paper-50)] shadow-[0_2px_18px_rgba(0,0,0,0.35)]",
+        "text-[0.9375rem] font-semibold text-[var(--color-paper-50)] shadow-[0_2px_18px_rgba(0,0,0,0.35)]",
         "transition-all duration-500 ease-[var(--ease-out-expo)]",
         "hover:border-[var(--color-gold-400)] hover:text-[var(--color-gold-300)]",
         "sm:right-6 sm:bottom-6",

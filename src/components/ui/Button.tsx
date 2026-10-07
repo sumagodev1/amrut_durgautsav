@@ -43,7 +43,7 @@ const VARIANTS: Record<Variant, string> = {
 
 const BASE =
   "group relative inline-flex items-center justify-center gap-2.5 rounded-[2px] " +
-  "px-7 py-3.5 text-sm font-semibold tracking-wide " +
+  "px-7 py-3.5 text-[0.9375rem] font-semibold tracking-wide " +
   "transition-colors duration-300 ease-[var(--ease-out-expo)] " +
   "min-h-11";
 

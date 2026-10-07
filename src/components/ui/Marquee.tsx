@@ -47,7 +47,7 @@ export function Marquee({
              exist purely to fill the track. */
           aria-hidden={!ariaHidden && i >= items.length ? true : undefined}
         >
-          <span className="px-6 text-[0.9375rem] tracking-wide sm:px-9 sm:text-base">
+          <span className="px-6 text-base tracking-wide sm:px-9 sm:text-[1.0625rem]">
             {item}
           </span>
           <Diamond />

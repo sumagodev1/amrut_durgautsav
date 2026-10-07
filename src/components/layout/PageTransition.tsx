@@ -89,7 +89,6 @@ export function PageTransition({ children }: { children: ReactNode }) {
       {/* The incoming page fades up under the departing curtain. */}
       <motion.div
         key={pathname}
-        data-reveal
         initial={hasNavigated && !reduced ? { opacity: 0, y: 10 } : false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: EASE_IN_OUT_QUINT, delay: reduced ? 0 : 0.12 }}

@@ -2,12 +2,13 @@ import { UI } from "@/data/ui";
 import { t, DEFAULT_LOCALE } from "@/lib/i18n";
 
 /**
- * Route-level loading state.
+ * Loading state for the photo routes.
  *
- * Deliberately minimal — a thin indeterminate rule rather than a skeleton of
- * the page. Pages here are mostly static, so this shows only when a data
- * fetch is genuinely in flight, and a flash of fake layout would be worse
- * than a quiet line.
+ * Scoped deliberately to the two routes that are genuinely rendered per
+ * request. A loading boundary at the locale level would be worse than
+ * useless: every other page is prerendered, so its only effect would be to
+ * place a skeleton at the top of the document that paints before the real
+ * markup — already present further down — has finished arriving.
  */
 export default function Loading() {
   return (

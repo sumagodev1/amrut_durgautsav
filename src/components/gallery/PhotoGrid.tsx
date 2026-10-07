@@ -2,14 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion } from "motion/react";
 import type { Photo } from "@/lib/repositories";
 import { UI } from "@/data/ui";
 import { t, type Locale } from "@/lib/i18n";
 import { cn, eyebrowClass } from "@/lib/utils";
 import { Lightbox } from "./Lightbox";
-import { usePrefersReducedMotion } from "@/lib/hooks";
-import { EASE_OUT_EXPO } from "@/lib/motion";
 import { GatewayMotif } from "@/components/decor/Ornament";
 
 /**
@@ -47,7 +44,6 @@ export function PhotoGrid({
   emptyMessage?: string;
 }) {
   const [open, setOpen] = useState<number | null>(null);
-  const reduced = usePrefersReducedMotion();
 
   if (photos.length === 0) {
     return (
@@ -62,24 +58,11 @@ export function PhotoGrid({
 
   return (
     <>
-      <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-12">
+      <ul data-reveal-group="" className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-12">
         {photos.map((photo, i) => {
           const [span, ratio] = RHYTHM[i % RHYTHM.length];
           return (
-            <motion.li
-              key={photo.id}
-              className={cn("col-span-1", span)}
-              data-reveal
-              initial={reduced ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-              transition={{
-                duration: 0.6,
-                ease: EASE_OUT_EXPO,
-                // Stagger within a row, not across the whole page.
-                delay: (i % 3) * 0.07,
-              }}
-            >
+            <li key={photo.id} className={cn("col-span-1", span)}>
               <button
                 type="button"
                 onClick={() => setOpen(i)}
@@ -114,7 +97,7 @@ export function PhotoGrid({
                   </span>
                 )}
               </button>
-            </motion.li>
+            </li>
           );
         })}
       </ul>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE, CONTACT, SOCIAL } from "@/data/site";
+import { SITE, CONTACT, ACTIVE_SOCIAL } from "@/data/site";
 import { LOCALES, t, type Locale } from "@/lib/i18n";
 
 /**
@@ -109,7 +109,7 @@ export function organizationSchema(locale: Locale) {
       addressRegion: "Maharashtra",
       addressCountry: "IN",
     },
-    sameAs: SOCIAL.map((s) => s.href),
+    sameAs: ACTIVE_SOCIAL.map((s) => s.href),
   };
 }
 

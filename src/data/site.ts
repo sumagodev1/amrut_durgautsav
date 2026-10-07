@@ -66,14 +66,47 @@ export function whatsappUrl(message: string): string {
   return `https://wa.me/${CONTACT.phone}?text=${encodeURIComponent(message)}`;
 }
 
-export const SOCIAL = [
+export type SocialLink = {
+  /** Also selects the icon — see components/layout/SocialLinks.tsx. */
+  key: "instagram" | "facebook" | "x" | "youtube";
+  label: string;
+  handle?: string;
+  /**
+   * Omit until an official URL is confirmed. Entries without an href are not
+   * rendered at all — a dead or guessed link on a government-backed campaign
+   * site is worse than a missing icon.
+   */
+  href?: string;
+};
+
+/**
+ * Social accounts.
+ *
+ * Instagram is the one account the campaign actually publishes: it is the
+ * link carried by amrutdurgotsav.com itself. The source site also shows
+ * Facebook, X and YouTube icons, but all three point at `href="#"` there —
+ * they are placeholders, not accounts.
+ *
+ * To switch one on, drop its official URL into `href` below. The icon, the
+ * footer row, the mobile menu, the contact page and the `sameAs` property of
+ * the Organization structured data all pick it up automatically.
+ */
+export const SOCIAL: readonly SocialLink[] = [
   {
     key: "instagram",
     label: "Instagram",
     handle: "@durgotsav2025",
     href: "https://www.instagram.com/durgotsav2025?igsh=czl0cWJseDlkeXF1",
   },
-] as const;
+  { key: "facebook", label: "Facebook" },
+  { key: "x", label: "X" },
+  { key: "youtube", label: "YouTube" },
+];
+
+/** Only the accounts that have a real URL. */
+export const ACTIVE_SOCIAL = SOCIAL.filter(
+  (s): s is SocialLink & { href: string } => Boolean(s.href),
+);
 
 export type NavItem = {
   key: string;

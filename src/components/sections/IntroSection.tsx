@@ -39,7 +39,7 @@ export function IntroSection({ locale }: { locale: Locale }) {
               <Eyebrow>{t(SITE.organisationShort, locale)} · {t(SITE.year, locale)}</Eyebrow>
             </Reveal>
 
-            <Reveal preset="unmaskUp" delay={0.05}>
+            <Reveal preset="unmask" delay={0.05}>
               <p
                 lang={locale}
                 className="mt-7 text-[clamp(1.125rem,0.9rem+1vw,1.5rem)] leading-snug text-[var(--muted)]"
@@ -48,7 +48,7 @@ export function IntroSection({ locale }: { locale: Locale }) {
               </p>
             </Reveal>
 
-            <Reveal preset="unmaskUp" delay={0.1}>
+            <Reveal preset="unmask" delay={0.1}>
               <Display
                 locale={locale}
                 level="h1"
@@ -71,7 +71,7 @@ export function IntroSection({ locale }: { locale: Locale }) {
               <Link
                 href={localeHref(locale, "/mission")}
                 data-cursor="link"
-                className="group mt-9 inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-sm font-medium text-[var(--foreground)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                className="group mt-9 inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
               >
                 {t(MISSION.eyebrow, locale)}
                 <ArrowRight

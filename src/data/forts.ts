@@ -218,8 +218,8 @@ export const FORTS: readonly Fort[] = [
     image: {
       src: "/fort/raigadh.jpg",
       alt: {
-        mr: "रायगड किल्ला — स्वराज्याची राजधानी",
-        en: "Raigad Fort, capital of the Maratha state",
+        mr: "रायगड किल्ल्याचे दगडी प्रवेशद्वार आणि घुमटाकार छत्र्या",
+        en: "The stone gateway and domed chhatris of Raigad Fort",
       },
     },
   },

@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   experimental: {
+    // Tree-shake per-icon / per-export imports instead of pulling whole
+    // barrel files into every client chunk.
+    optimizePackageImports: ["lucide-react", "motion"],
+
     // Lets app/global-not-found.tsx serve unmatched URLs. Without it, Next
     // falls back to its own bare 404 page — which sits outside our layout,
     // carries no branding and is in the wrong language.

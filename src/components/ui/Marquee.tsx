@@ -20,13 +20,33 @@ export function Marquee({
 }) {
   if (items.length === 0) return null;
 
+  /**
+   * The loop translates the pair of tracks by exactly -50%, so it only reads
+   * as continuous if a single track is already wider than the viewport. With
+   * a handful of short phrases it is not — the track runs out and a blank gap
+   * sweeps across before the loop restarts.
+   *
+   * Repeating the phrases until each track holds at least this many keeps the
+   * strip filled on a 2560px display without measuring anything at runtime,
+   * which matters because this is a server component.
+   */
+  const MIN_ITEMS_PER_TRACK = 18;
+  const repeats = Math.max(2, Math.ceil(MIN_ITEMS_PER_TRACK / items.length));
+  const filled = Array.from({ length: repeats }, () => items).flat();
+
   const track = (ariaHidden: boolean) => (
     <ul
       aria-hidden={ariaHidden || undefined}
       className="flex shrink-0 items-center"
     >
-      {items.map((item, i) => (
-        <li key={`${item}-${i}`} className="flex items-center whitespace-nowrap">
+      {filled.map((item, i) => (
+        <li
+          key={`${item}-${i}`}
+          className="flex items-center whitespace-nowrap"
+          /* Only the first pass through the phrases is announced; the repeats
+             exist purely to fill the track. */
+          aria-hidden={!ariaHidden && i >= items.length ? true : undefined}
+        >
           <span className="px-6 text-[0.9375rem] tracking-wide sm:px-9 sm:text-base">
             {item}
           </span>

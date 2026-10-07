@@ -84,7 +84,7 @@ export function PageHero({
                 <Eyebrow>{eyebrow}</Eyebrow>
               </Reveal>
             )}
-            <Reveal preset="unmaskUp" delay={0.05}>
+            <Reveal preset="unmask" delay={0.05}>
               <Display locale={locale} level="h1" as="h1" className="mt-6 text-[var(--foreground)]">
                 {title}
               </Display>

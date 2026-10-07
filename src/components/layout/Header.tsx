@@ -8,7 +8,7 @@ import { NAV } from "@/data/site";
 import { UI } from "@/data/ui";
 import { t, type Locale } from "@/lib/i18n";
 import { cn, localeHref } from "@/lib/utils";
-import { Logo } from "./Logo";
+import { BrandLockup } from "./BrandLockup";
 import { LanguageToggle } from "./LanguageToggle";
 import { MobileMenu } from "./MobileMenu";
 import { Button } from "@/components/ui/Button";
@@ -50,7 +50,7 @@ export function Header({ locale }: { locale: Locale }) {
         )}
       >
         <div className="container-page flex h-[72px] items-center justify-between gap-6 lg:h-20">
-          <Logo locale={locale} />
+          <BrandLockup locale={locale} />
 
           <nav aria-label={t(UI.menu, locale)} className="hidden lg:block">
             <ul className="flex items-center gap-1">
@@ -64,7 +64,7 @@ export function Header({ locale }: { locale: Locale }) {
                       aria-current={active ? "page" : undefined}
                       data-cursor="link"
                       className={cn(
-                        "group relative inline-flex items-center px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors duration-300",
+                        "group relative inline-flex items-center px-3.5 py-2 text-[0.8125rem] font-semibold tracking-wide transition-colors duration-300",
                         locale === "mr" && "font-[family-name:var(--font-devanagari)] text-sm",
                         active
                           ? "text-[var(--accent)]"

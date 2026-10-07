@@ -33,7 +33,7 @@ export function HeroBackground({ alt }: { alt: string }) {
         style={reduced ? undefined : { y, scale }}
       >
         <Image
-          src="/media/rajgad-fort.png"
+          src="/fort/rajgad-fort.png"
           alt={alt}
           fill
           priority

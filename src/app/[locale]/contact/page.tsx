@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Mail, Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
-import { CONTACT, SOCIAL, SITE, FOOTER_LINKS, whatsappUrl } from "@/data/site";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import { CONTACT, ACTIVE_SOCIAL, SITE, FOOTER_LINKS, whatsappUrl } from "@/data/site";
 import { UI } from "@/data/ui";
 import { isLocale, t, type Locale } from "@/lib/i18n";
 import { pageMetadata, JsonLd, breadcrumbSchema } from "@/lib/seo";
@@ -9,6 +9,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Reveal, RevealItem } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { RuledFrame } from "@/components/decor/Ornament";
+import { SOCIAL_ICONS } from "@/components/layout/SocialLinks";
 import { cn, eyebrowClass } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -64,9 +65,9 @@ export default async function ContactPage({
       href: `tel:${CONTACT.phone}`,
       ltr: true,
     },
-    ...SOCIAL.map((s) => ({
+    ...ACTIVE_SOCIAL.map((s) => ({
       key: s.key,
-      icon: Instagram,
+      icon: SOCIAL_ICONS[s.key],
       label: s.label,
       value: s.handle,
       href: s.href,

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { isLocale, t, type Locale } from "@/lib/i18n";
 import { SITE } from "@/data/site";
@@ -66,14 +67,38 @@ export default async function HomePage({
       <ParticipateSection locale={locale} />
 
       <TimelineSection locale={locale} />
-      <ProgressSection locale={locale} />
+
+      {/*
+        The two bands below read from the live Durgotsav platform. They are
+        given their own Suspense boundaries so that a slow — or unreachable —
+        upstream can never hold up the rest of the page: the hero and every
+        static section stream immediately, and these two fill in when their
+        data arrives.
+
+        Without this they sit inside the page's single boundary, and one
+        stalled fetch delays first paint for the whole document.
+      */}
+      <Suspense fallback={<SectionPlaceholder />}>
+        <ProgressSection locale={locale} />
+      </Suspense>
 
       <RecordSection locale={locale} />
-      <GallerySection locale={locale} />
+
+      <Suspense fallback={null}>
+        <GallerySection locale={locale} />
+      </Suspense>
 
       <VoicesSection locale={locale} />
 
       <JsonLd data={festivalEventSchema(locale)} />
     </>
   );
+}
+
+/**
+ * Holds the progress band's vertical space while its figures load, so the
+ * sections around it do not shift when the data lands.
+ */
+function SectionPlaceholder() {
+  return <div aria-hidden className="zone-maroon min-h-[22rem] sm:min-h-[26rem]" />;
 }

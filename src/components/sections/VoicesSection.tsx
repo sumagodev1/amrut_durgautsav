@@ -46,6 +46,15 @@ export function VoicesSection({ locale }: { locale: Locale }) {
               </blockquote>
             </div>
             <figcaption className="lg:col-span-4 lg:col-start-9">
+              {lead.portrait && (
+                <Image
+                  src={lead.portrait.src}
+                  alt={t(lead.portrait.alt, locale)}
+                  width={96}
+                  height={96}
+                  className="mb-5 size-20 rounded-full object-cover"
+                />
+              )}
               <p
                 lang={locale}
                 className="text-lg text-[var(--foreground)]"
@@ -58,7 +67,7 @@ export function VoicesSection({ locale }: { locale: Locale }) {
               <Link
                 href={localeHref(locale, "/voices")}
                 data-cursor="link"
-                className="group mt-6 inline-flex items-center gap-2 border-b border-[var(--border)] pb-1 text-sm font-medium transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
+                className="group mt-6 inline-flex items-center gap-2 border-b border-[var(--border)] pb-1 text-sm font-semibold transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
               >
                 {t(UI.readMore, locale)}
                 <ArrowRight

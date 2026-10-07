@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Instagram } from "lucide-react";
-import { NAV, FOOTER_LINKS, CONTACT, SOCIAL, SITE } from "@/data/site";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { NAV, FOOTER_LINKS, CONTACT, SITE } from "@/data/site";
 import { UI } from "@/data/ui";
 import { FINAL_CTA } from "@/data/home";
 import { t, type Locale } from "@/lib/i18n";
@@ -11,6 +11,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { RampartRule, WarliChain } from "@/components/decor/Ornament";
 import { LanguageToggle } from "./LanguageToggle";
+import { BrandLockup } from "./BrandLockup";
+import { SocialLinks } from "./SocialLinks";
 
 /**
  * The closing composition: a final call, the full navigation, the organising
@@ -58,33 +60,16 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-12 lg:gap-10">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3.5">
-              <Image
-                src="/media/durgotsav-logo.png"
-                alt=""
-                width={56}
-                height={56}
-                className="size-12"
-              />
-              <span className="flex flex-col leading-tight">
-                <span className="font-[family-name:var(--font-devanagari)] text-xl">
-                  {t(SITE.festival, "mr")}{" "}
-                  <span className="text-[var(--accent)]">{t(SITE.year, "mr")}</span>
-                </span>
-                <span
-                  className={cn(
-                    eyebrowClass(t(SITE.parentBrand, locale)),
-                    "mt-1.5 text-[0.5625rem] text-[var(--muted)]",
-                  )}
-                >
-                  {t(SITE.parentBrand, locale)}
-                </span>
-              </span>
-            </div>
+            <BrandLockup locale={locale} size="footer" />
 
             <p lang={locale} className="mt-6 max-w-sm text-sm leading-[1.85] text-[var(--muted)]">
               {t(FINAL_CTA.closing, locale)}
             </p>
+
+            <h2 className={cn(eyebrowClass(t(UI.followLabel, locale)), "mt-8 text-[var(--accent)]")}>
+              {t(UI.followLabel, locale)}
+            </h2>
+            <SocialLinks className="mt-4" />
 
             <RampartRule className="mt-8 w-48" />
           </div>
@@ -153,31 +138,14 @@ export function Footer({ locale }: { locale: Locale }) {
                   {t(CONTACT.address, locale)}
                 </address>
               </li>
-              {SOCIAL.map((s) => (
-                <li key={s.key} className="flex gap-3">
-                  <Instagram aria-hidden className="mt-0.5 size-4 shrink-0 text-[var(--accent)] opacity-70" />
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-6 items-center text-[var(--foreground)] transition-colors hover:text-[var(--accent)]"
-                  >
-                    {s.handle}
-                    <span className="sr-only"> — {s.label}</span>
-                  </a>
-                </li>
-              ))}
             </ul>
 
-            {/* Institutional marks */}
-            <div className="mt-10 flex flex-wrap items-center gap-x-9 gap-y-5">
-              <Image
-                src="/media/amrut-logo.png"
-                alt={t(SITE.organisation, locale)}
-                width={180}
-                height={60}
-                className="h-11 w-auto opacity-85"
-              />
+            {/* Sister initiative.
+                The AMRUT mark that used to sit beside this one is gone: the
+                brand lockup above now carries the अमृत wordmark, and that
+                asset has a white background baked in, so on this dark footer
+                it read as a bare white rectangle. */}
+            <div className="mt-10">
               <Image
                 src="/media/amrut-vidya-logo.png"
                 alt="Amrut Vidya"

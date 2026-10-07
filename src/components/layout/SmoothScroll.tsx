@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
-import { usePrefersReducedMotion } from "@/lib/hooks";
+import { useHasFinePointer, usePrefersReducedMotion } from "@/lib/hooks";
 
 /**
  * Lenis smooth scrolling.
@@ -15,9 +15,13 @@ import { usePrefersReducedMotion } from "@/lib/hooks";
  */
 export function SmoothScroll() {
   const reduced = usePrefersReducedMotion();
+  const finePointer = useHasFinePointer();
 
   useEffect(() => {
-    if (reduced) return;
+    // Touch devices keep native scrolling: their momentum is better than
+    // anything we would synthesise, it stays off the main thread, and a
+    // permanent requestAnimationFrame loop is a real cost on a phone.
+    if (reduced || !finePointer) return;
 
     const lenis = new Lenis({
       lerp: 0.11,
@@ -54,7 +58,7 @@ export function SmoothScroll() {
       cancelAnimationFrame(frame);
       lenis.destroy();
     };
-  }, [reduced]);
+  }, [reduced, finePointer]);
 
   return null;
 }

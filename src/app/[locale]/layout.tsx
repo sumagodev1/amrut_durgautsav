@@ -10,8 +10,8 @@ import { LocaleProvider } from "@/components/LocaleProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { LoadingScreen } from "@/components/layout/LoadingScreen";
 import dynamic from "next/dynamic";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { JsonLd, organizationSchema, websiteSchema, absoluteUrl } from "@/lib/seo";
 
 /**
@@ -22,9 +22,6 @@ import { JsonLd, organizationSchema, websiteSchema, absoluteUrl } from "@/lib/se
  */
 const SmoothScroll = dynamic(() =>
   import("@/components/layout/SmoothScroll").then((m) => m.SmoothScroll),
-);
-const ScrollProgress = dynamic(() =>
-  import("@/components/ui/ScrollProgress").then((m) => m.ScrollProgress),
 );
 const Cursor = dynamic(() => import("@/components/ui/Cursor").then((m) => m.Cursor));
 const WhatsAppFloat = dynamic(() =>
@@ -57,12 +54,16 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fraunces",
-  axes: ["SOFT", "WONK", "opsz"],
+  // Optical size only — SOFT and WONK are stylistic axes the design never
+  // varies, and every axis adds weight to the variable font file.
+  axes: ["opsz"],
 });
 
 const mukta = Mukta({
   subsets: ["devanagari", "latin"],
-  weight: ["400", "500", "600", "700"],
+  // Two weights only. A Devanagari subset is ~65 KiB per weight per script,
+  // so every extra weight is a quarter of a megabyte on first load.
+  weight: ["400", "600"],
   display: "swap",
   variable: "--font-mukta",
 });
@@ -116,8 +117,10 @@ export async function generateMetadata({
             "cultural heritage",
           ],
     icons: {
-      icon: [{ url: "/media/durgotsav-logo.png", type: "image/png" }],
-      apple: [{ url: "/media/durgotsav-logo.png" }],
+      // Dedicated small icons: the full logo is a 98 KiB asset and the
+      // browser fetches a favicon raw, unoptimised, on every first load.
+      icon: [{ url: "/icon.png", type: "image/png", sizes: "96x96" }],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
     },
     manifest: "/manifest.webmanifest",
     alternates: {
@@ -149,19 +152,6 @@ export default async function LocaleLayout({
       className={`${tiro.variable} ${fraunces.variable} ${mukta.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* Scroll reveals ship with inline `opacity: 0` and are brought in by
-            script. Without JavaScript that content would simply be invisible,
-            so force every reveal to its final state. */}
-        <noscript>
-          <style
-            dangerouslySetInnerHTML={{
-              __html:
-                "[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}",
-            }}
-          />
-        </noscript>
-      </head>
       <body className="zone-ink antialiased">
         <a
           href="#main"
@@ -172,7 +162,6 @@ export default async function LocaleLayout({
 
         <LocaleProvider locale={locale}>
           <SmoothScroll />
-          <LoadingScreen locale={locale} />
           <ScrollProgress />
           <Cursor />
 

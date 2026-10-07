@@ -1,84 +1,66 @@
-"use client";
-
-import { motion, type Variants } from "motion/react";
 import type { ElementType, ReactNode } from "react";
-import { rise, riseSmall, fade, unmaskUp, staggerChildren, VIEWPORT } from "@/lib/motion";
-import { usePrefersReducedMotion } from "@/lib/hooks";
-
-const PRESETS: Record<string, Variants> = {
-  rise,
-  riseSmall,
-  fade,
-  unmaskUp,
-};
-
-type RevealProps = {
-  children: ReactNode;
-  /** Which motion to use. Defaults to the standard rise. */
-  preset?: keyof typeof PRESETS;
-  as?: ElementType;
-  className?: string;
-  delay?: number;
-  /** Stagger direct children instead of animating this element itself. */
-  stagger?: number;
-};
+import { cn } from "@/lib/utils";
 
 /**
- * The single scroll-reveal primitive. Everything on the site that animates
- * into view goes through this, so timing stays consistent and reduced-motion
- * is handled in exactly one place.
+ * The scroll-reveal primitive.
+ *
+ * Server components, with no JavaScript. The animation is a CSS scroll-driven
+ * animation declared once in globals.css; this just marks the element.
+ *
+ * The important property is that revealed is the *default* state. Where the
+ * browser supports `animation-timeline: view()` the content animates in as it
+ * enters the viewport; everywhere else — and under reduced motion, and if
+ * scripting is off entirely — it is simply visible. Nothing here can leave
+ * content stranded at opacity 0.
  */
+
+type Preset = "rise" | "unmask" | "fade";
+
 export function Reveal({
   children,
   preset = "rise",
-  as = "div",
+  as: Tag = "div",
   className,
-  delay = 0,
+  /** Stagger direct children instead of animating this element itself. */
   stagger,
-}: RevealProps) {
-  const reduced = usePrefersReducedMotion();
-  const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
-
-  if (reduced) {
-    const Tag = as as ElementType;
-    return <Tag className={className}>{children}</Tag>;
+}: {
+  children: ReactNode;
+  preset?: Preset;
+  as?: ElementType;
+  className?: string;
+  /**
+   * Present for call-site compatibility. Staggering is expressed as a scroll
+   * range per child in CSS, so the value itself is not used.
+   */
+  stagger?: number;
+  /** Accepted and ignored: delays have no meaning on a scroll timeline. */
+  delay?: number;
+}) {
+  if (stagger !== undefined) {
+    return (
+      <Tag data-reveal-group="" className={className}>
+        {children}
+      </Tag>
+    );
   }
 
-  const variants = stagger ? staggerChildren(stagger, delay) : PRESETS[preset];
-
   return (
-    <MotionTag
-      data-reveal
-      className={className}
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT}
-      transition={stagger ? undefined : { delay }}
-    >
+    <Tag data-reveal={preset === "rise" ? "" : preset} className={className}>
       {children}
-    </MotionTag>
+    </Tag>
   );
 }
 
-/** A child of a `stagger` Reveal. */
+/** A direct child of a `stagger` Reveal. */
 export function RevealItem({
   children,
   className,
-  preset = "rise",
-  as = "div",
-}: Omit<RevealProps, "stagger" | "delay">) {
-  const reduced = usePrefersReducedMotion();
-  const MotionTag = motion[as as keyof typeof motion] as typeof motion.div;
-
-  if (reduced) {
-    const Tag = as as ElementType;
-    return <Tag className={className}>{children}</Tag>;
-  }
-
-  return (
-    <MotionTag data-reveal className={className} variants={PRESETS[preset]}>
-      {children}
-    </MotionTag>
-  );
+  as: Tag = "div",
+}: {
+  children: ReactNode;
+  className?: string;
+  preset?: Preset;
+  as?: ElementType;
+}) {
+  return <Tag className={cn(className)}>{children}</Tag>;
 }

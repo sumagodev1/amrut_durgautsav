@@ -386,6 +386,199 @@
 }
 
 /* ==========================================================================
+   HERO ENTRANCE
+   Driven by CSS, not JavaScript, and deliberately so.
+
+   When the hero lockup was animated by the motion library it stayed hidden
+   until React had hydrated — on a throttled connection the title did not
+   appear for four and a half seconds. A CSS animation begins the moment the
+   element is first painted, so the hero now arrives with the page instead of
+   with the bundle. The reduced-motion block above collapses all of it.
+   ========================================================================== */
+
+@keyframes hero-unmask {
+  from {
+    clip-path: inset(110% 0% -10% 0%);
+    transform: translateY(18%);
+  }
+  to {
+    clip-path: inset(-10% 0% -10% 0%);
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-rule {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@utility hero-anim-unmask {
+  animation: hero-unmask 1.05s var(--ease-out-expo) both;
+}
+
+@utility hero-anim-rise {
+  animation: hero-rise 0.8s var(--ease-out-expo) both;
+}
+
+@utility hero-anim-rule {
+  animation: hero-rule 1s var(--ease-out-expo) both;
+  transform-origin: left center;
+}
+
+/* ==========================================================================
+   SCROLL REVEALS
+   Also CSS, and for the same reason as the hero: these wrap almost every
+   section on the site, and routing them through the motion library pulled a
+   client component — and its hydration cost — into content that is otherwise
+   entirely static.
+
+   The contract is deliberately inverted from the usual approach: revealed
+   content is the DEFAULT state, and the animation is layered on only where
+   the browser supports scroll-driven animations. Nothing can leave content
+   invisible — not a failed bundle, not an unsupported browser, not a
+   disabled script.
+   ========================================================================== */
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-unmask {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 0% 0% 0%);
+    transform: translateY(12%);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(-25% 0% -25% 0%);
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-image {
+  from {
+    clip-path: inset(0% 100% 0% 0%);
+  }
+  to {
+    clip-path: inset(0% 0% 0% 0%);
+  }
+}
+
+@keyframes reveal-image-inner {
+  from {
+    transform: scale(1.16);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 48%;
+    }
+
+    [data-reveal="unmask"] {
+      animation-name: reveal-unmask;
+    }
+
+    [data-reveal="fade"] {
+      animation-name: reveal-fade;
+    }
+
+    /* A stagger, expressed as a scroll range rather than a delay: each
+       sibling finishes a little later than the one before it. */
+    [data-reveal-group] > * {
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+    [data-reveal-group] > *:nth-child(2) {
+      animation-range: entry 8% entry 52%;
+    }
+    [data-reveal-group] > *:nth-child(3) {
+      animation-range: entry 11% entry 58%;
+    }
+    [data-reveal-group] > *:nth-child(n + 4) {
+      animation-range: entry 14% entry 64%;
+    }
+
+    .image-reveal {
+      animation: reveal-image linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    .image-reveal > * {
+      animation: reveal-image-inner linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
+  }
+}
+
+/* Reading progress, driven by the document scroll timeline. Absent rather
+   than static where scroll-driven animations are unsupported — a progress bar
+   frozen at 0% would be worse than none. */
+.scroll-progress {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      display: block;
+      transform: scaleX(0);
+      animation: scroll-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
    REDUCED MOTION
    Everything decorative stops. Everything functional stays.
    ========================================================================== */

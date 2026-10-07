@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
-import { NAV, FOOTER_LINKS, CONTACT, SOCIAL, SITE } from "@/data/site";
+import { NAV, FOOTER_LINKS, CONTACT, SITE } from "@/data/site";
 import { UI } from "@/data/ui";
 import { t, formatIndex, type Locale } from "@/lib/i18n";
 import { localeHref, cn, eyebrowClass } from "@/lib/utils";
@@ -12,6 +12,7 @@ import { menuPanel, menuItem } from "@/lib/motion";
 import { useScrollLock, usePrefersReducedMotion } from "@/lib/hooks";
 import { WarliChain, RampartRule } from "@/components/decor/Ornament";
 import { Button } from "@/components/ui/Button";
+import { SocialLinks } from "./SocialLinks";
 
 /**
  * Full-screen navigation for small viewports.
@@ -197,17 +198,7 @@ export function MobileMenu({
                 >
                   {CONTACT.phoneDisplay}
                 </a>
-                {SOCIAL.map((s) => (
-                  <a
-                    key={s.key}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
-                  >
-                    {s.label} · {s.handle}
-                  </a>
-                ))}
+                <SocialLinks className="pt-3" size="compact" />
               </div>
 
               <p className="mt-8 text-xs text-[var(--muted)]">{t(SITE.organisation, locale)}</p>

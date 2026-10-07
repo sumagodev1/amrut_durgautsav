@@ -60,7 +60,9 @@ async function getJson(url: string, revalidate = REVALIDATE_SECONDS): Promise<un
     const res = await fetch(url, {
       headers: { Accept: "application/json" },
       next: { revalidate },
-      signal: AbortSignal.timeout(8000),
+      // Fail fast: a stalled upstream must degrade to the empty state
+      // quickly, not hold a streamed section open.
+      signal: AbortSignal.timeout(3000),
     });
     if (!res.ok) return null;
     return (await res.json()) as unknown;

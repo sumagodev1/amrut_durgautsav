@@ -13,8 +13,8 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "mr-IN",
     icons: [
       {
-        src: "/media/durgotsav-logo.png",
-        sizes: "any",
+        src: "/icon.png",
+        sizes: "96x96",
         type: "image/png",
       },
     ],

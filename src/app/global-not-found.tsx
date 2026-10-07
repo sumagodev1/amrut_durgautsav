@@ -30,7 +30,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fraunces",
-  axes: ["SOFT", "WONK", "opsz"],
+  axes: ["opsz"],
 });
 
 const mukta = Mukta({

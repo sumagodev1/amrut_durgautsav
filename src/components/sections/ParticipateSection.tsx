@@ -69,7 +69,7 @@ export function ParticipateSection({ locale }: { locale: Locale }) {
                       </span>
                       <span
                         aria-hidden
-                        className="absolute -top-1 -right-1 z-10 flex size-6 items-center justify-center rounded-full bg-[var(--primary)] text-[0.625rem] font-bold text-[var(--primary-contrast)] tabular-nums"
+                        className="absolute -top-1 -right-1 z-10 flex size-6 items-center justify-center rounded-full bg-[var(--primary)] text-[0.625rem] font-semibold text-[var(--primary-contrast)] tabular-nums"
                       >
                         {formatIndex(i + 1, locale)}
                       </span>

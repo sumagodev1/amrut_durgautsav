@@ -45,7 +45,7 @@ export function FortsSection({ locale }: { locale: Locale }) {
             <Link
               href={localeHref(locale, "/forts")}
               data-cursor="link"
-              className="group inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-sm font-medium text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="group inline-flex items-center gap-2.5 border-b border-[var(--border)] pb-1.5 text-sm font-semibold text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               {t(UI.viewAll, locale)}
               <ArrowRight
